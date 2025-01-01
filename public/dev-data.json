@@ -1,0 +1,242 @@
+[
+  {
+    "title": "Spaghetti Bolognese",
+    "description": "A classic Italian pasta dish with rich tomato sauce and ground beef.",
+    "ingredients": [
+      "spaghetti",
+      "ground beef",
+      "onion",
+      "garlic",
+      "tomato sauce",
+      "parmesan cheese"
+    ],
+    "steps": [
+      "Boil pasta",
+      "Cook beef with onion and garlic",
+      "Add tomato sauce",
+      "Simmer and serve with cheese"
+    ],
+    "cookingTime": 45,
+    "category": "Dinner",
+    "tags": ["Italian", "Pasta", "Main Course"],
+    "image": "spaghetti.jpg",
+    "likes": [],
+    "comments": [],
+    "createdBy": "user1"
+  },
+  {
+    "title": "Vegan Buddha Bowl",
+    "description": "A healthy and vibrant bowl of quinoa, roasted vegetables, and avocado.",
+    "ingredients": [
+      "quinoa",
+      "broccoli",
+      "sweet potato",
+      "avocado",
+      "spinach",
+      "sesame seeds"
+    ],
+    "steps": [
+      "Cook quinoa",
+      "Roast vegetables",
+      "Assemble with fresh avocado and spinach",
+      "Top with sesame seeds"
+    ],
+    "cookingTime": 30,
+    "category": "Lunch",
+    "tags": ["Vegan", "Healthy", "Gluten-free"],
+    "image": "buddha_bowl.jpg",
+    "likes": [],
+    "comments": [],
+    "createdBy": "user2"
+  },
+  {
+    "title": "Chicken Caesar Salad",
+    "description": "A fresh salad with grilled chicken, romaine lettuce, and Caesar dressing.",
+    "ingredients": [
+      "chicken breast",
+      "romaine lettuce",
+      "parmesan",
+      "croutons",
+      "Caesar dressing"
+    ],
+    "steps": [
+      "Grill chicken",
+      "Toss lettuce with dressing",
+      "Top with chicken, parmesan, and croutons"
+    ],
+    "cookingTime": 20,
+    "category": "Lunch",
+    "tags": ["Salad", "Chicken", "Quick"],
+    "image": "chicken_caesar.jpg",
+    "likes": [],
+    "comments": [],
+    "createdBy": "user3"
+  },
+  {
+    "title": "Beef Tacos",
+    "description": "Mexican-style soft tacos filled with seasoned beef, cheese, and salsa.",
+    "ingredients": [
+      "ground beef",
+      "taco shells",
+      "cheddar cheese",
+      "salsa",
+      "lettuce"
+    ],
+    "steps": [
+      "Cook beef with taco seasoning",
+      "Fill shells with beef, cheese, salsa, and lettuce"
+    ],
+    "cookingTime": 25,
+    "category": "Dinner",
+    "tags": ["Mexican", "Tacos", "Street Food"],
+    "image": "beef_tacos.jpg",
+    "likes": [],
+    "comments": [],
+    "createdBy": "user4"
+  },
+  {
+    "title": "Pancakes",
+    "description": "Fluffy breakfast pancakes served with syrup and butter.",
+    "ingredients": [
+      "flour",
+      "milk",
+      "eggs",
+      "baking powder",
+      "sugar",
+      "butter"
+    ],
+    "steps": [
+      "Mix ingredients",
+      "Cook on griddle",
+      "Serve with butter and syrup"
+    ],
+    "cookingTime": 15,
+    "category": "Breakfast",
+    "tags": ["Breakfast", "Sweet", "Quick"],
+    "image": "pancakes.jpg",
+    "likes": [],
+    "comments": [],
+    "createdBy": "user5"
+  },
+  {
+    "title": "Shrimp Stir Fry",
+    "description": "A quick and easy shrimp stir fry with bell peppers and soy sauce.",
+    "ingredients": ["shrimp", "bell peppers", "soy sauce", "ginger", "garlic"],
+    "steps": [
+      "Stir fry shrimp",
+      "Add vegetables and sauce",
+      "Cook until tender"
+    ],
+    "cookingTime": 20,
+    "category": "Dinner",
+    "tags": ["Asian", "Seafood", "Quick"],
+    "image": "shrimp_stir_fry.jpg",
+    "likes": [],
+    "comments": [],
+    "createdBy": "user6"
+  },
+  {
+    "title": "Avocado Toast",
+    "description": "Smashed avocado on toasted bread with a sprinkle of chili flakes and olive oil.",
+    "ingredients": ["avocado", "bread", "olive oil", "chili flakes"],
+    "steps": [
+      "Toast bread",
+      "Mash avocado",
+      "Spread avocado on toast",
+      "Top with chili flakes and olive oil"
+    ],
+    "cookingTime": 10,
+    "category": "Breakfast",
+    "tags": ["Vegan", "Quick", "Healthy"],
+    "image": "avocado_toast.jpg",
+    "likes": [],
+    "comments": [],
+    "createdBy": "user7"
+  },
+  {
+    "title": "Chocolate Chip Cookies",
+    "description": "Soft and chewy cookies with melted chocolate chips.",
+    "ingredients": [
+      "flour",
+      "sugar",
+      "butter",
+      "eggs",
+      "chocolate chips",
+      "baking soda"
+    ],
+    "steps": [
+      "Mix ingredients",
+      "Scoop dough onto baking sheet",
+      "Bake until golden"
+    ],
+    "cookingTime": 25,
+    "category": "Dessert",
+    "tags": ["Sweet", "Cookies", "Baking"],
+    "image": "chocolate_chip_cookies.jpg",
+    "likes": [],
+    "comments": [],
+    "createdBy": "user8"
+  },
+  {
+    "title": "Grilled Cheese Sandwich",
+    "description": "A crispy and gooey grilled cheese sandwich.",
+    "ingredients": ["bread", "cheddar cheese", "butter"],
+    "steps": ["Butter bread", "Add cheese and grill until golden"],
+    "cookingTime": 10,
+    "category": "Lunch",
+    "tags": ["Quick", "Comfort Food"],
+    "image": "grilled_cheese.jpg",
+    "likes": [],
+    "comments": [],
+    "createdBy": "user9"
+  },
+  {
+    "title": "Margarita Pizza",
+    "description": "A simple pizza with fresh mozzarella, basil, and tomato sauce.",
+    "ingredients": ["pizza dough", "tomato sauce", "mozzarella", "basil"],
+    "steps": ["Roll dough", "Add sauce and toppings", "Bake until crispy"],
+    "cookingTime": 30,
+    "category": "Dinner",
+    "tags": ["Pizza", "Italian", "Vegetarian"],
+    "image": "margarita_pizza.jpg",
+    "likes": [],
+    "comments": [],
+    "createdBy": "user10"
+  },
+  {
+    "title": "Coconut Curry",
+    "description": "A creamy coconut curry with chicken and vegetables.",
+    "ingredients": [
+      "chicken",
+      "coconut milk",
+      "curry paste",
+      "bell peppers",
+      "onions"
+    ],
+    "steps": [
+      "Cook chicken",
+      "Add vegetables and curry paste",
+      "Simmer in coconut milk"
+    ],
+    "cookingTime": 40,
+    "category": "Dinner",
+    "tags": ["Asian", "Spicy", "Curry"],
+    "image": "coconut_curry.jpg",
+    "likes": [],
+    "comments": [],
+    "createdBy": "user11"
+  },
+  {
+    "title": "Banana Smoothie",
+    "description": "A refreshing banana smoothie with almond milk and honey.",
+    "ingredients": ["banana", "almond milk", "honey", "ice"],
+    "steps": ["Blend ingredients until smooth"],
+    "cookingTime": 5,
+    "category": "Beverage",
+    "tags": ["Smoothie", "Vegan", "Quick"],
+    "image": "banana_smoothie.jpg",
+    "likes": [],
+    "comments": [],
+    "createdBy": "user12"
+  }
+]
