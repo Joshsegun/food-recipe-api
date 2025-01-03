@@ -1,12 +1,14 @@
 const express = require("express");
 const recipeController = require("../controllers/recipeController");
+// const authController = require("../controllers/authController");
+const authMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
 router
   .route("/")
   .post(recipeController.createRecipe)
-  .get(recipeController.getAllRecipes);
+  .get(authMiddleware.authenticate, recipeController.getAllRecipes);
 
 router
   .route("/:id")
