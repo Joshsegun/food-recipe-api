@@ -103,3 +103,28 @@ exports.forgotPassword = asyncAwaitHandler(async (req, res, next) => {
   //   500
   // );
 });
+
+exports.resetPassword = async (req, res) => {
+  const { token } = req.params;
+  const { newPassword } = req.body;
+
+  try {
+    // Verify token
+    const decoded = jwt.verify(token, process.env.JWT_RESET_SECRET);
+    const user = await User.findById(decoded.id); // Adjust for your database
+
+    if (!user) next(new ErrorHandler("Invalid or expired token",404))
+
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update user's password
+    user.password = hashedPassword;
+    await user.save();
+
+    res.status(200).json({ message: 'Password reset successful' });
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ message: 'Invalid or expired token' });
+  }
+};

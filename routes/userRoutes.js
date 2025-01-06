@@ -11,6 +11,8 @@ router
   .route("/profile")
   .get(authMiddleware.authenticate, userController.profile);
 
+  router.route("/forgotPassword").post(authController.forgotPassword)
+
 router
   .route("/")
   .get(userController.getAllUsers)

@@ -15,7 +15,7 @@ const DB = process.env.DATABASE_LOCAL;
 
 // Connecting to the database
 mongoose
-  .connect(DB)
+  .connect(DB,)
   .then(() =>
     console.log("Connection is successful, Time to unleash the data power.")
   );
