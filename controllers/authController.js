@@ -18,7 +18,7 @@ exports.register = asyncAwaitHandler(async (req, res) => {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 
-  console.log(token);
+  // console.log(token);
 
   newUser.password = undefined;
 
@@ -96,6 +96,7 @@ exports.forgotPassword = asyncAwaitHandler(async (req, res, next) => {
   res.status(200).json({
     status: "success",
     message: "Password reset link sent to your email",
+    resetToken,
   });
 
   // return next(
@@ -104,27 +105,33 @@ exports.forgotPassword = asyncAwaitHandler(async (req, res, next) => {
   // );
 });
 
-exports.resetPassword = async (req, res) => {
+exports.resetPassword = asyncAwaitHandler (async (req, res,next) => {
   const { token } = req.params;
-  const { newPassword } = req.body;
+  const { newPassword, passwordConfirm } = req.body;
 
   try {
     // Verify token
     const decoded = jwt.verify(token, process.env.JWT_RESET_SECRET);
     const user = await User.findById(decoded.id); // Adjust for your database
 
-    if (!user) next(new ErrorHandler("Invalid or expired token",404))
+  
 
-    // Hash the new password
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    if (!user) return next(new ErrorHandler("Invalid or expired token",404))
+
 
     // Update user's password
-    user.password = hashedPassword;
+    user.password = req.body.newPassword;
+    user.passwordConfirm = req.body.passwordConfirm
     await user.save();
 
-    res.status(200).json({ message: 'Password reset successful' });
+
+    res.status(200).json({
+      status:"success",
+      message : "Password reset successfully"
+    })
+
   } catch (error) {
-    console.error(error);
-    res.status(400).json({ message: 'Invalid or expired token' });
+    // console.error(error);
+    // res.status(400).json({ message: 'Invalid or expired token' });
   }
-};
+})

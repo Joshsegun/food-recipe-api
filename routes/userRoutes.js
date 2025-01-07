@@ -9,9 +9,11 @@ router.route("/register").post(authController.register);
 router.route("/login").post(authController.login);
 router
   .route("/profile")
-  .get(authMiddleware.authenticate, userController.profile);
+  .get(authMiddleware.authenticate, userController.profile)
 
-  router.route("/forgotPassword").post(authController.forgotPassword)
+router.route("/forgotPassword").post(authController.forgotPassword)
+
+router.route("/resetPassword/:token").post(authController.resetPassword)
 
 router
   .route("/")
