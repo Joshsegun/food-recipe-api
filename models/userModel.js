@@ -2,38 +2,44 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
 
-const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, "Please input your fullname"],
-  },
-  username: {
-    type: String,
-    unique: true,
-    required: [true, "Choose a username"],
-  },
-  email: {
-    type: String,
-    unique: true,
-    required: [true, "Email is required, Please input your email"],
-    validate: [validator.isEmail, "Please input a valid email"],
-  },
-  password: {
-    type: String,
-    required: [true, "Password is required, Please input a password"],
-    minLength: [8, "Password must be at least 8 characters long"],
-  },
-  passwordConfirm: {
-    type: String,
-    required: [true, "Please confirm your password"],
-    validate: {
-      validator: function (pass) {
-        return pass === this.password;
+const userSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true, "Please input your fullname"],
+    },
+    username: {
+      type: String,
+      unique: true,
+      required: [true, "Choose a username"],
+    },
+    email: {
+      type: String,
+      unique: true,
+      required: [true, "Email is required, Please input your email"],
+      validate: [validator.isEmail, "Please input a valid email"],
+    },
+    password: {
+      type: String,
+      required: [true, "Password is required, Please input a password"],
+      minLength: [8, "Password must be at least 8 characters long"],
+    },
+    passwordConfirm: {
+      type: String,
+      required: [true, "Please confirm your password"],
+      validate: {
+        validator: function (pass) {
+          return pass === this.password;
+        },
+        message: "Password does not match",
       },
-      message: "Password does not match",
     },
   },
-});
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  }
+);
 
 //Pre('save)hook
 //Remove passwordConfirm before saving to the database
