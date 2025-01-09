@@ -47,19 +47,31 @@ const recipeSchema = new mongoose.Schema({
   //   type: mongoose.Schema.Types.ObjectId,
   //   ref: "User",
   // },
-  // comments: [
-  //   {
-  //     user: {
-  //       type: mongoose.Schema.Types.ObjectId,
-  //       ref: "User",
-  //     },
-  //     comment: String,
-  //   },
-  // ],
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Comment",
+    },
+  ],
   createdAt: {
     type: Date,
     default: Date.now(),
   },
+});
+
+// recipeSchema.virtual("comments", {
+//   ref: "Comment",
+//   foreignField: "recipe",
+//   localField: "_id",
+// });
+
+recipeSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: "comments",
+    select: "comment user",
+  });
+
+  next();
 });
 
 const Recipe = mongoose.model("Recipe", recipeSchema);

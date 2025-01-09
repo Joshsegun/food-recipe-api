@@ -1,6 +1,7 @@
 const Comment = require("../models/commentModel");
 const ErrorHandler = require("../utils/errorHandler");
 const asyncAwaitHandler = require("../utils/asyncAwaitHandler");
+const Recipe = require("../models/recipeModel");
 
 exports.getAllComments = async (req, res) => {
   const comments = await Comment.find();
@@ -8,7 +9,7 @@ exports.getAllComments = async (req, res) => {
   res.status(200).json({
     status: "success",
     results: comments.length,
-    recipes,
+    comments,
   });
 };
 
@@ -24,14 +25,29 @@ exports.getComment = asyncAwaitHandler(async (req, res, next) => {
   });
 });
 
-exports.createComment = async (req, res) => {
-  const comment = await Comment.create(req.body);
+exports.createComment = asyncAwaitHandler(async (req, res, next) => {
+  const user = req.user;
+
+  const { comment, recipeId } = req.body;
+
+  const recipe = await Recipe.findById(recipeId);
+
+  if (!recipeId) return next(new ErrorHandler("Recipe Not found", 404));
+
+  const text = await Comment.create({
+    comment,
+    user,
+    recipe: recipeId,
+  });
+
+  recipe.comments.push(text._id);
+  await recipe.save();
 
   res.status(201).json({
     status: "success",
-    comment,
+    text,
   });
-};
+});
 
 exports.updateComment = asyncAwaitHandler(async (req, res, next) => {
   const newComment = await Comment.findByIdAndUpdate(req.params.id, req.body, {

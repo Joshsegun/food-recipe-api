@@ -3,6 +3,8 @@ const express = require("express");
 
 const recipeRouter = require("./routes/recipeRoutes");
 const userRouter = require("./routes/userRoutes");
+const commentRouter = require("./routes/commentRoutes");
+
 const ErrorHandler = require("./utils/errorHandler");
 const globalErrorHandler = require("./controllers/errorController");
 
@@ -12,6 +14,7 @@ app.use(express.json());
 
 app.use("/api/v1/recipes", recipeRouter);
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/comments", commentRouter);
 
 app.use("*", (req, res, next) => {
   next(

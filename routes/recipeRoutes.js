@@ -1,6 +1,5 @@
 const express = require("express");
 const recipeController = require("../controllers/recipeController");
-// const authController = require("../controllers/authController");
 const authMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
