@@ -73,3 +73,38 @@ exports.deleteRecipe = asyncAwaitHandler(async (req, res, next) => {
     message: "Deleted Successfully",
   });
 });
+
+exports.likeRecipe = asyncAwaitHandler(  async (req,res,next) => {
+  const currentUserId = req.user._id
+  
+  const recipe = await Recipe.findByIdAndUpdate(req.params.id, 
+    { $addToSet: {likes : currentUserId}},
+    {new: true})
+
+    if(!recipe) return next(new ErrorHandler("Recipe not found", 404))
+
+  res.status(200).json({
+    status: "success",
+    message : "Recipe liked",
+    recipe
+  })
+
+})
+
+// Unlike a Recipe
+exports.unlikeRecipe = asyncAwaitHandler( async (req, res,next) => {
+  
+  const currentUserId = req.user._id; // User ID from authentication middleware
+
+  
+    const recipe = await Recipe.findByIdAndUpdate(
+      req.params.id,
+      { $pull: { likes: currentUserId } }, 
+      { new: true }
+    );
+
+    if(!recipe) return next(new ErrorHandler("Recipe not found", 404))
+   
+    res.status(200).json({ status:"success", message: 'Recipe unliked', recipe });
+  
+})

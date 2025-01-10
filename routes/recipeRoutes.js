@@ -4,6 +4,11 @@ const authMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
+router.use(authMiddleware.authenticate)
+
+router.post('/:id/like', recipeController.likeRecipe)
+router.post('/:id/unlike', recipeController.unlikeRecipe)
+
 router
   .route("/")
   .post(recipeController.createRecipe)

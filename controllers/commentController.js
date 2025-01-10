@@ -28,24 +28,26 @@ exports.getComment = asyncAwaitHandler(async (req, res, next) => {
 exports.createComment = asyncAwaitHandler(async (req, res, next) => {
   const user = req.user;
 
-  const { comment, recipeId } = req.body;
+  const { text, recipeId } = req.body;
+
+  console.log(text, recipeId);
 
   const recipe = await Recipe.findById(recipeId);
 
-  if (!recipeId) return next(new ErrorHandler("Recipe Not found", 404));
+  if (!recipe) return next(new ErrorHandler("Recipe Not found", 404));
 
-  const text = await Comment.create({
-    comment,
+  const comment = await Comment.create({
+    text,
     user,
     recipe: recipeId,
   });
 
-  recipe.comments.push(text._id);
+  recipe.comments.push(comment._id);
   await recipe.save();
 
   res.status(201).json({
     status: "success",
-    text,
+    comment,
   });
 });
 

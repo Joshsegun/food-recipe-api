@@ -37,12 +37,12 @@ const recipeSchema = new mongoose.Schema({
     type: String,
     // required: true,
   },
-  // likes: [
-  //   {
-  //     type: mongoose.Schema.Types.ObjectId,
-  //     ref: "User",
-  //   },
-  // ],
+  likes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
   // createdBy: {
   //   type: mongoose.Schema.Types.ObjectId,
   //   ref: "User",
@@ -68,11 +68,13 @@ const recipeSchema = new mongoose.Schema({
 recipeSchema.pre(/^find/, function (next) {
   this.populate({
     path: "comments",
-    select: "comment user",
+    select: "text",
   });
 
   next();
 });
+
+recipeSchema.index({ likes: 1 });
 
 const Recipe = mongoose.model("Recipe", recipeSchema);
 
