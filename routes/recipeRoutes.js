@@ -2,12 +2,14 @@ const express = require("express");
 const recipeController = require("../controllers/recipeController");
 const authMiddleware = require("../middleware/authMiddleware");
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
-router.use(authMiddleware.authenticate)
+router.use(authMiddleware.authenticate);
 
-router.post('/:id/like', recipeController.likeRecipe)
-router.post('/:id/unlike', recipeController.unlikeRecipe)
+router.get("/liked", recipeController.getLikedRecipes);
+
+router.post("/:id/like", recipeController.likeRecipe);
+router.post("/:id/unlike", recipeController.unlikeRecipe);
 
 router
   .route("/")

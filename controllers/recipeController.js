@@ -74,37 +74,55 @@ exports.deleteRecipe = asyncAwaitHandler(async (req, res, next) => {
   });
 });
 
-exports.likeRecipe = asyncAwaitHandler(  async (req,res,next) => {
-  const currentUserId = req.user._id
-  
-  const recipe = await Recipe.findByIdAndUpdate(req.params.id, 
-    { $addToSet: {likes : currentUserId}},
-    {new: true})
+exports.likeRecipe = asyncAwaitHandler(async (req, res, next) => {
+  const currentUserId = req.user._id;
 
-    if(!recipe) return next(new ErrorHandler("Recipe not found", 404))
+  const recipe = await Recipe.findByIdAndUpdate(
+    req.params.id,
+    { $addToSet: { likes: currentUserId } },
+    { new: true }
+  );
+
+  if (!recipe) return next(new ErrorHandler("Recipe not found", 404));
 
   res.status(200).json({
     status: "success",
-    message : "Recipe liked",
-    recipe
-  })
-
-})
+    message: "Recipe liked",
+    recipe,
+  });
+});
 
 // Unlike a Recipe
-exports.unlikeRecipe = asyncAwaitHandler( async (req, res,next) => {
-  
+exports.unlikeRecipe = asyncAwaitHandler(async (req, res, next) => {
   const currentUserId = req.user._id; // User ID from authentication middleware
 
-  
-    const recipe = await Recipe.findByIdAndUpdate(
-      req.params.id,
-      { $pull: { likes: currentUserId } }, 
-      { new: true }
-    );
+  const recipe = await Recipe.findByIdAndUpdate(
+    req.params.id,
+    { $pull: { likes: currentUserId } },
+    { new: true }
+  );
 
-    if(!recipe) return next(new ErrorHandler("Recipe not found", 404))
-   
-    res.status(200).json({ status:"success", message: 'Recipe unliked', recipe });
-  
-})
+  if (!recipe) return next(new ErrorHandler("Recipe not found", 404));
+
+  res
+    .status(200)
+    .json({ status: "success", message: "Recipe unliked", recipe });
+});
+
+//Get liked recipes by a user
+exports.getLikedRecipes = asyncAwaitHandler(async (req, res, next) => {
+  //Get the user id
+  const { userId } = req.params;
+
+  if (!userId) return next(new ErrorHandler("User not found", 404));
+
+  const likedRecipes = await Recipe.find({ likes: userId }, " name");
+
+  if (likedRecipes.length === 0)
+    return next(new ErrorHandler("User has not liked any recipe", 404));
+
+  res.status(200).json({
+    status: "success",
+    message: "Liked recipes retrieved",
+  });
+});
