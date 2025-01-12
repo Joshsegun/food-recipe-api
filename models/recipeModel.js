@@ -69,6 +69,9 @@ recipeSchema.pre(/^find/, function (next) {
   this.populate({
     path: "comments",
     select: "text",
+  }).populate({
+    path: "likes",
+    select: "name username",
   });
 
   next();

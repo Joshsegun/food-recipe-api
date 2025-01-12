@@ -8,8 +8,8 @@ router.use(authMiddleware.authenticate);
 
 router.get("/liked", recipeController.getLikedRecipes);
 
-router.post("/:id/like", recipeController.likeRecipe);
-router.post("/:id/unlike", recipeController.unlikeRecipe);
+router.post("/:recipeId/like", recipeController.likeRecipe);
+router.post("/:recipeId/unlike", recipeController.unlikeRecipe);
 
 router
   .route("/")
